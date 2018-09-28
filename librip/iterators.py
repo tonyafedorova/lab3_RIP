@@ -4,7 +4,7 @@ class Unique(object):
         self.lst = items
         self.index = 0
         self.pre = 0
-        if kwargs is None:
+        if kwargs.__len__() == 0:
             self.ignore_case = False
         else:
             self.ignore_case = kwargs
@@ -17,14 +17,24 @@ class Unique(object):
                 self.index = self.index + 1
                 return self.lst[self.pre]
             else:
-                if self.lst[self.pre] != self.lst[self.index]:
-                    self.pre = self.index
-                    self.index = self.index + 1
-                    return self.lst[self.pre]
+                if self.ignore_case is False:
+                    if self.lst[self.pre] != self.lst[self.index]:
+                        self.pre = self.index
+                        self.index = self.index + 1
+                        return self.lst[self.pre]
+                    else:
+                        self.pre = self.index
+                        self.index = self.index + 1
+                        return self.__next__()
                 else:
-                    self.pre = self.index
-                    self.index = self.index + 1
-                    return self.__next__()
+                    if self.lst[self.pre].lower() != self.lst[self.index].lower():
+                        self.pre = self.index
+                        self.index = self.index + 1
+                        return self.lst[self.pre]
+                    else:
+                        self.pre = self.index
+                        self.index = self.index + 1
+                        return self.__next__()
 
     def __iter__(self):
         return self

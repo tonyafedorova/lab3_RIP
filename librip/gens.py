@@ -11,7 +11,7 @@ def field(items, *args):
         for x in items:
             for a in args:
                 if x[a] is not None:
-                    yield a, x[a]
+                    yield {a: x[a]}
     # реализовала генератор
 
 
