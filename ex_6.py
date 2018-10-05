@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import json
-import sys
 from librip.ctxmngrs import timer
 from librip.decorators import print_result
 from librip.gens import field, gen_random
@@ -27,23 +26,20 @@ def f1(arg):
     return list(Unique(sorted(field(arg, "job-name")), ig=True))
 
 
-# @print_result
-# def f2(arg):
-#     raise NotImplemented
+@print_result
+def f2(arg):
+    return list(filter(lambda x: "программист" in x, arg))
 
 
-# @print_result
-# def f3(arg):
-#     raise NotImplemented
-#
-#
-# @print_result
-# def f4(arg):
-#     raise NotImplemented
-#
-#
-# with timer():
-#    f4(f3(f2(f1(data))))
+@print_result
+def f3(arg):
+    return list(map(lambda x: x+" с опытом python", arg))
 
 
-f1(data)
+@print_result
+def f4(arg):
+    return list("{}, зарплата {} руб.".format(x, y)for x, y in zip(arg, list(gen_random(100000, 200000, len(arg)))))
+
+
+with timer():
+    f4(f3(f2(f1(data))))

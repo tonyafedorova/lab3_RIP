@@ -14,4 +14,5 @@ def print_result(fn):
                 print(i, "=", fun[i])
         else:
             print(fun)
+        return fun
     return inside
