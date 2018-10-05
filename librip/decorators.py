@@ -1,8 +1,11 @@
 
 def print_result(fn):
-    def inside():
+    def inside(*args):
         print(fn.__name__)
-        fun = fn()
+        if len(args) == 0:
+            fun = fn()
+        else:
+            fun = fn(args[0])
         if type(fun) == list:
             for i in fun:
                 print(i)
