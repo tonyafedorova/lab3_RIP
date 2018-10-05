@@ -21,19 +21,17 @@ with open(path) as f:
 # В реализации функции 4 может быть до 3 строк
 # При этом строки должны быть не длиннее 80 символов
 
-#
+
 @print_result
 def f1(arg):
-    data2 = list()
-    for num in arg:
-        data2.append(num["job-name"].lower())
-    return list(Unique(sorted(data2)))
+    return list(Unique(sorted(field(arg, "job-name")), ig=True))
+
 
 # @print_result
 # def f2(arg):
 #     raise NotImplemented
-#
-#
+
+
 # @print_result
 # def f3(arg):
 #     raise NotImplemented
@@ -46,16 +44,6 @@ def f1(arg):
 #
 # with timer():
 #    f4(f3(f2(f1(data))))
-
-
-# f1(data)
-# data2 = list()
-# for i in data:
-#     data2.append(i["job-name"])
-# data_ = sorted(data[i]["job-name"], key=lambda x: x.lower())
-# print(data_)
-# print(data[6]["job-name"])
-# print(data2)
 
 
 f1(data)
